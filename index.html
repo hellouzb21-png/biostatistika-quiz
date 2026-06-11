@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biostatistika va Jamoat Salomatligi Testlari</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                <div class="brand-text">
+                    <h1>Biostatistik</h1>
+                    <span>Quiz & Study Platform</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <button class="menu-item active" id="btn-home-tab">
+                    <i class="fa-solid fa-house"></i> Bosh sahifa
+                </button>
+                <button class="menu-item" id="btn-bookmarks-tab">
+                    <i class="fa-solid fa-star"></i> Yodlab qolishlar <span class="badge" id="bookmark-badge">0</span>
+                </button>
+                <button class="menu-item" id="btn-stats-tab">
+                    <i class="fa-solid fa-chart-simple"></i> Statistika
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-reset-all" id="btn-reset-all">
+                    <i class="fa-solid fa-rotate-left"></i> Progressni o'chirish
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-welcome">
+                    <h2 id="header-title">Xush kelibsiz!</h2>
+                    <p id="header-subtitle">Biostatistika va Jamoat Salomatligi imtihoniga tayyorgarlik ko'ring.</p>
+                </div>
+                <div class="mode-selector-wrapper">
+                    <span class="mode-label">Rejim:</span>
+                    <div class="mode-toggle-group">
+                        <button class="mode-btn active" id="btn-mode-study" title="Study Mode: Har bir savolga javob berilganda to'g'ri/noto'g'riligi va tushuntirishi ko'rsatiladi.">
+                            <i class="fa-solid fa-book-open"></i> O'rganish (Study)
+                        </button>
+                        <button class="mode-btn" id="btn-mode-quiz" title="Quiz Mode: Test kabi ishlanadi, natija oxirida chiqadi.">
+                            <i class="fa-solid fa-stopwatch"></i> Test (Quiz)
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- TAB: HOME (Dashboard & Active Quiz) -->
+            <section class="tab-content active" id="tab-home">
+                <!-- Dashboard (Set selection) -->
+                <div class="dashboard-grid" id="dashboard-set-selector">
+                    <div class="section-title-wrapper">
+                        <h3>Savollar To'plamlari</h3>
+                        <p>Quyidagi 50 talik bloklardan birini tanlang</p>
+                    </div>
+                    
+                    <div class="sets-grid">
+                        <!-- Set 1 Card -->
+                        <div class="set-card" data-set-index="0">
+                            <div class="set-card-header">
+                                <div class="set-icon-wrapper color-1">
+                                    <i class="fa-solid fa-cubes"></i>
+                                </div>
+                                <span class="set-num">1-Blok</span>
+                            </div>
+                            <h4>1 - 50 savollar</h4>
+                            <p class="set-desc">Biostatistika va variatsion qatorlar asoslari.</p>
+                            <div class="set-progress-wrapper">
+                                <div class="set-progress-info">
+                                    <span>Bajarildi</span>
+                                    <span class="set-progress-pct" id="set-0-pct">0%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill color-1" id="set-0-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <button class="btn-start-set color-1-btn">Mashq qilishni boshlash</button>
+                        </div>
+
+                        <!-- Set 2 Card -->
+                        <div class="set-card" data-set-index="1">
+                            <div class="set-card-header">
+                                <div class="set-icon-wrapper color-2">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <span class="set-num">2-Blok</span>
+                            </div>
+                            <h4>51 - 100 savollar</h4>
+                            <p class="set-desc">Korrelyatsiya, o'rtacha qiymatlar va ishonchlilik.</p>
+                            <div class="set-progress-wrapper">
+                                <div class="set-progress-info">
+                                    <span>Bajarildi</span>
+                                    <span class="set-progress-pct" id="set-1-pct">0%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill color-2" id="set-1-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <button class="btn-start-set color-2-btn">Mashq qilishni boshlash</button>
+                        </div>
+
+                        <!-- Set 3 Card -->
+                        <div class="set-card" data-set-index="2">
+                            <div class="set-card-header">
+                                <div class="set-icon-wrapper color-3">
+                                    <i class="fa-solid fa-hospital-user"></i>
+                                </div>
+                                <span class="set-num">3-Blok</span>
+                            </div>
+                            <h4>101 - 150 savollar</h4>
+                            <p class="set-desc">Jamoat salomatligi va sog'liqni saqlash tashkiloti.</p>
+                            <div class="set-progress-wrapper">
+                                <div class="set-progress-info">
+                                    <span>Bajarildi</span>
+                                    <span class="set-progress-pct" id="set-2-pct">0%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill color-3" id="set-2-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <button class="btn-start-set color-3-btn">Mashq qilishni boshlash</button>
+                        </div>
+
+                        <!-- Set 4 Card -->
+                        <div class="set-card" data-set-index="3">
+                            <div class="set-card-header">
+                                <div class="set-icon-wrapper color-4">
+                                    <i class="fa-solid fa- stethoscope"></i>
+                                </div>
+                                <span class="set-num">4-Blok</span>
+                            </div>
+                            <h4>151 - 193 savollar</h4>
+                            <p class="set-desc">Mehnatga layoqatsizlik va yakuniy qismlar.</p>
+                            <div class="set-progress-wrapper">
+                                <div class="set-progress-info">
+                                    <span>Bajarildi</span>
+                                    <span class="set-progress-pct" id="set-3-pct">0%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill color-4" id="set-3-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <button class="btn-start-set color-4-btn">Mashq qilishni boshlash</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Quiz Workspace (hidden by default) -->
+                <div class="quiz-workspace hidden" id="quiz-workspace">
+                    <div class="workspace-header">
+                        <button class="btn-back-to-dashboard" id="btn-back-dashboard">
+                            <i class="fa-solid fa-arrow-left"></i> Bloklarga qaytish
+                        </button>
+                        <div class="workspace-title" id="workspace-title-info">
+                            <h4>Set 1</h4>
+                            <span>Study Mode</span>
+                        </div>
+                    </div>
+
+                    <!-- Question Grid Navigation -->
+                    <div class="question-nav-container">
+                        <div class="question-nav-header">
+                            <span>Savollar Navigatsiyasi</span>
+                            <span class="question-nav-counter" id="question-nav-counter">1 / 50</span>
+                        </div>
+                        <div class="question-dots-grid" id="question-dots-grid">
+                            <!-- JS will generate 50 dots here -->
+                        </div>
+                    </div>
+
+                    <!-- Main Active Card -->
+                    <div class="active-question-card" id="active-question-card">
+                        <div class="question-card-header">
+                            <span class="question-difficulty-badge" id="question-badge-info">Savol #1</span>
+                            <div class="card-action-buttons">
+                                <button class="action-btn" id="btn-view-source" title="Asl rasm yoki PDF manbasini ko'rish">
+                                    <i class="fa-solid fa-image"></i> Manbani ko'rish
+                                </button>
+                                <button class="action-btn" id="btn-bookmark-question" title="Yodlab qolishlar ro'yxatiga qo'shish">
+                                    <i class="fa-regular fa-star"></i> Saqlash
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="question-body">
+                            <p class="question-text" id="question-text">
+                                Statistik Majmuada kuzatuv birliklarining necha foizi M ± 2σ ichida bo'ladi?
+                            </p>
+                        </div>
+
+                        <!-- Options Container -->
+                        <div class="options-container" id="options-container">
+                            <button class="option-card" data-opt-index="0">
+                                <span class="option-letter">A</span>
+                                <span class="option-text">95,50%</span>
+                                <i class="fa-solid fa-circle-check option-status-icon"></i>
+                            </button>
+                            <button class="option-card" data-opt-index="1">
+                                <span class="option-letter">B</span>
+                                <span class="option-text">58,80%</span>
+                                <i class="fa-solid fa-circle-check option-status-icon"></i>
+                            </button>
+                            <button class="option-card" data-opt-index="2">
+                                <span class="option-letter">C</span>
+                                <span class="option-text">78,60%</span>
+                                <i class="fa-solid fa-circle-check option-status-icon"></i>
+                            </button>
+                            <button class="option-card" data-opt-index="3">
+                                <span class="option-letter">D</span>
+                                <span class="option-text">68,30%</span>
+                                <i class="fa-solid fa-circle-check option-status-icon"></i>
+                            </button>
+                        </div>
+
+                        <!-- Explanation Area (hidden by default) -->
+                        <div class="explanation-container hidden" id="explanation-container">
+                            <div class="explanation-header">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Tushuntirish va Tibbiy Qoida</span>
+                            </div>
+                            <p class="explanation-text" id="explanation-text">
+                                M ± 2σ oraliqda kuzatuvlarning 95.50% qismi yotadi.
+                            </p>
+                        </div>
+
+                        <!-- Footer Navigation -->
+                        <div class="card-footer-nav">
+                            <button class="nav-btn" id="btn-prev-question" disabled>
+                                <i class="fa-solid fa-chevron-left"></i> Oldingi
+                            </button>
+                            
+                            <!-- Quiz mode submit button -->
+                            <button class="nav-btn accent-btn hidden" id="btn-submit-answer">
+                                Javobni tasdiqlash
+                            </button>
+
+                            <button class="nav-btn" id="btn-next-question">
+                                Keyingi <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Result Area (hidden by default) -->
+                    <div class="quiz-result-card hidden" id="quiz-result-card">
+                        <div class="result-icon-wrapper">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3>Test yakunlandi!</h3>
+                        <p class="result-subtitle">Sizning natijangiz:</p>
+                        
+                        <div class="result-score-container">
+                            <div class="result-score-circle">
+                                <span class="score-num" id="result-score-num">42</span>
+                                <span class="score-den">/ 50</span>
+                            </div>
+                            <p class="score-message" id="result-score-message">Ajoyib natija! Yaxshi o'zlashtirgansiz.</p>
+                        </div>
+
+                        <div class="result-details-grid">
+                            <div class="result-detail-item">
+                                <span class="detail-label">To'g'ri javoblar</span>
+                                <span class="detail-val text-success" id="result-correct-count">42</span>
+                            </div>
+                            <div class="result-detail-item">
+                                <span class="detail-label">Noto'g'ri javoblar</span>
+                                <span class="detail-val text-error" id="result-incorrect-count">8</span>
+                            </div>
+                            <div class="result-detail-item">
+                                <span class="detail-label">Umumiy foiz</span>
+                                <span class="detail-val text-accent" id="result-pct">84%</span>
+                            </div>
+                        </div>
+
+                        <div class="result-buttons">
+                            <button class="result-btn primary-btn" id="btn-review-answers">
+                                <i class="fa-solid fa-eye"></i> Javoblarni ko'rib chiqish
+                            </button>
+                            <button class="result-btn secondary-btn" id="btn-restart-quiz">
+                                <i class="fa-solid fa-rotate-right"></i> Qaytadan topshirish
+                            </button>
+                            <button class="result-btn outline-btn" id="btn-finish-quiz">
+                                <i class="fa-solid fa-house"></i> Bosh sahifaga qaytish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: BOOKMARKS -->
+            <section class="tab-content" id="tab-bookmarks">
+                <div class="section-title-wrapper">
+                    <h3>Saqlangan Savollar</h3>
+                    <p>Siz yodlab qolish uchun belgilagan savollar ro'yxati</p>
+                </div>
+
+                <div class="bookmarks-wrapper">
+                    <div class="bookmarks-empty" id="bookmarks-empty-state">
+                        <div class="empty-icon-wrapper">
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h4>Hozircha saqlangan savollar yo'q</h4>
+                        <p>Savollarni o'rganayotganda "Saqlash" tugmasini bossangiz, ular shu yerda ko'rinadi.</p>
+                    </div>
+
+                    <div class="bookmarks-list hidden" id="bookmarks-list">
+                        <!-- JS will populate bookmarks here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: STATS -->
+            <section class="tab-content" id="tab-stats">
+                <div class="section-title-wrapper">
+                    <h3>O'zlashtirish Statistikasi</h3>
+                    <p>Sizning o'quv jarayoningiz tahlili va ko'rsatkichlaringiz</p>
+                </div>
+
+                <div class="stats-grid">
+                    <!-- General Progress -->
+                    <div class="stats-card span-2">
+                        <h4>Umumiy Progress</h4>
+                        <div class="overall-progress-container">
+                            <div class="overall-circle-progress">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                    <circle class="progress-ring__circle" id="overall-ring" stroke="var(--color-accent)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                </svg>
+                                <div class="overall-circle-text">
+                                    <span class="overall-pct-num" id="overall-pct-num">0%</span>
+                                </div>
+                            </div>
+                            <div class="overall-progress-details">
+                                <div class="progress-detail-row">
+                                    <span>Jami savollar soni:</span>
+                                    <strong id="stats-total-questions">193 ta</strong>
+                                </div>
+                                <div class="progress-detail-row">
+                                    <span>O'rganildi (to'g'ri topildi):</span>
+                                    <strong class="text-success" id="stats-correct-total">0 ta</strong>
+                                </div>
+                                <div class="progress-detail-row">
+                                    <span>Xato qilindi:</span>
+                                    <strong class="text-error" id="stats-incorrect-total">0 ta</strong>
+                                </div>
+                                <div class="progress-detail-row">
+                                    <span>Hali ochilmadi:</span>
+                                    <strong id="stats-unseen-total">193 ta</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance by Set -->
+                    <div class="stats-card">
+                        <h4>Bloklar bo'yicha Natijalar</h4>
+                        <div class="stats-bars-container">
+                            <!-- Block 1 -->
+                            <div class="stat-bar-row">
+                                <div class="stat-bar-label">
+                                    <span>1-Blok</span>
+                                    <span id="stat-set-0-text">0 / 50</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div class="stat-bar-fill color-1" id="stat-set-0-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <!-- Block 2 -->
+                            <div class="stat-bar-row">
+                                <div class="stat-bar-label">
+                                    <span>2-Blok</span>
+                                    <span id="stat-set-1-text">0 / 50</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div class="stat-bar-fill color-2" id="stat-set-1-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <!-- Block 3 -->
+                            <div class="stat-bar-row">
+                                <div class="stat-bar-label">
+                                    <span>3-Blok</span>
+                                    <span id="stat-set-2-text">0 / 50</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div class="stat-bar-fill color-3" id="stat-set-2-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <!-- Block 4 -->
+                            <div class="stat-bar-row">
+                                <div class="stat-bar-label">
+                                    <span>4-Blok</span>
+                                    <span id="stat-set-3-text">0 / 43</span>
+                                </div>
+                                <div class="stat-bar-bg">
+                                    <div class="stat-bar-fill color-4" id="stat-set-3-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Lightbox Modal Dialog (using closedby="any" with fallback) -->
+    <dialog id="source-lightbox" closedby="any" aria-labelledby="lightbox-title">
+        <div class="lightbox-content">
+            <header class="lightbox-header">
+                <h3 id="lightbox-title">Savol Manbasi va Asli</h3>
+                <button class="lightbox-close-btn" id="btn-close-lightbox">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </header>
+            
+            <div class="lightbox-body">
+                <!-- Source Info text -->
+                <div class="source-info-banner" id="lightbox-source-text">
+                    Ushbu savol: IMAGE 2026-06-11 19:33:35.jpg dan olingan.
+                </div>
+
+                <!-- Lightbox Image viewer -->
+                <div class="lightbox-image-wrapper" id="lightbox-image-wrapper">
+                    <img id="lightbox-img" src="" alt="Savolning asl skrinshoti">
+                </div>
+
+                <!-- Lightbox PDF/Text fallback viewer -->
+                <div class="lightbox-pdf-fallback hidden" id="lightbox-pdf-fallback">
+                    <div class="fallback-icon">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <h4>PDF Hujjati sahifasi</h4>
+                    <p id="lightbox-pdf-desc">Ushbu savol skan qilingan PDF hujjatining sahifasidan olingan bo'lib, uning asl tasviri faqat PDF faylining o'zida ko'rinadi.</p>
+                </div>
+            </div>
+            
+            <footer class="lightbox-footer">
+                <p>Formula va matndagi noaniqliklarni tekshirish uchun asl manbadan foydalaning.</p>
+            </footer>
+        </div>
+    </dialog>
+
+    <!-- Load scripts -->
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

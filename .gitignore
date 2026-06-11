@@ -1,0 +1,15 @@
+# Ignore large scanned PDFs and raw study materials
+*.pdf
+*.docx
+
+# Ignore local Python and Swift scripts
+*.py
+*.swift
+
+# Ignore raw data and intermediate OCR results
+*.json
+*.txt
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
